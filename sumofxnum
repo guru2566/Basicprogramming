@@ -2,7 +2,7 @@
 int main ()
 {
   int a[100], n, x = 0;
-  printf ("Enter the number elemts to be entered");
+  printf ("Enter the number elemts to be entered ");
   scanf ("%d", &n);
   for(int i=0;i<n;i++)
     {
