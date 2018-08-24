@@ -11,6 +11,6 @@ int main()
   int a,b,x;
   scanf("%d\t%d",&a,&b);
   x=add(a,b);
-  printf("%d + %d = %d",a,b,c);
+  printf("%d + %d = %d",a,b,x);
   return 0;
  }
