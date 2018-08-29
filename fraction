@@ -1,0 +1,79 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void add(int a[], int b[], int n, unsigned long long s[])
+{
+	int i, j;
+	unsigned long long temp;
+	//Calculate the numerator
+   	for(i=0; i<n; i++)
+    	{
+	        temp = a[i];
+	        for(j=0; j<n; j++)
+	        temp = temp * ((i==j)?1:b[j]);
+	        s[0] += temp;
+	}
+
+	//Calculate the denominator
+	for(i=0; i<n; i++) s[1] *= b[i];
+
+	 //Simplify the expression
+	 while(1)
+	 {
+	 if(s[0]%2==0 && s[1]%2==0)
+	 {
+		s[0] /= 2;
+		s[1] /= 2;
+	        continue;
+	}
+        else if(s[0]%3==0 && s[1]%3==0)
+        {
+            s[0] /= 3;
+            s[1] /= 3;
+            continue;
+        }
+        else if(s[0]%5==0 && s[1]%5==0)
+        {
+            s[0] /= 5;
+            s[1] /= 5;
+            continue;
+        }
+        else if(s[0]%7==0 && s[1]%7==0)
+        {
+            s[0] /= 7;
+            s[1] /= 7;
+            continue;
+        }
+        else if(s[0]%11==0 && s[1]%11==0)
+        {
+            s[0] /= 11;
+            s[1] /= 11;
+            continue;
+        }
+        else if(s[0]%13==0 && s[1]%13==0)
+        {
+            s[0] /= 13;
+            s[1] /= 13;
+            continue;
+        }
+        break;
+    }
+}
+
+int main()
+{
+    int i, j, a[50], b[50], n;
+    unsigned long long s[2] = {0, 1};
+
+    printf("Enter the number of fractions: ");
+    scanf("%d", &n);
+
+    printf("Enter the fractions sequentially\n");
+    for(i=0; i<n; i++)
+        scanf("%d/%d", &a[i], &b[i]);
+
+	add(a, b, n, s);
+
+    printf("The sum of the fractions is %llu/%llu\n", s[0], s[1]);
+    return 0;
+}
