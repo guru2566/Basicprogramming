@@ -1,0 +1,50 @@
+#include<iostream>
+#include<stdio.h>
+#include<tgmath.h>
+using namespace std;
+
+struct fraction{
+    int d, n;
+}t;
+
+void add(fraction f){
+    fraction temp;
+    temp.n = temp.d = 0;
+
+    if(t.n == 0 && t.d == 0) t=f;
+    else{
+        temp.d = t.d * f.d;
+        temp.n = t.n*f.d + t.d*f.n;
+        t=temp;
+    }
+
+    int i= (t.n < t.d)?t.n:t.d;
+
+    while(--i && i!=1){
+        if(t.n%i==0 && t.d%i==0){
+            t.n=t.n/i;
+            t.d=t.d/i;
+        } 
+    }
+}
+
+int main(){
+    int n;
+    float x, y;
+    fraction temp;
+    t.n=t.d=0;
+    cout<<"Enter the number of fractions: ";
+    cin>>n;
+    cout<<"Enter the fractions sequentially: ";
+    while(n--){
+        scanf("%f/%f", &x, &y);
+        while(x != (int)x || y != (int)y){
+            x*=10;
+            y*=10;
+        }
+        temp.n=x;
+        temp.d=y;
+        add(temp);
+    }
+    cout<<"The sum is "<<t.n<<"/"<<t.d;
+}
